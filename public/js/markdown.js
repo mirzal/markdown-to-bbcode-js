@@ -157,8 +157,9 @@ var Markdown = function() {
 
     /* `My code block` => [CODE]My code block[/CODE] */
     return content.replace(/`([^`\n]+.?)`/g, function(content, code) {
+	  template = _.template("[<%= type %>]<%= content %>[/<%= type %>]");
       return template({
-        type: "CODE",
+        type: "TT",
         content: code
       });
     });

@@ -53,7 +53,7 @@ describe("Markdown", function() {
 
   describe("#code", function() {
     it("converters markdown code `Code` to a BBCode tag", function() {
-      expect(converter.code("`Code!`")).toEqual('[CODE]\nCode!\n[/CODE]');
+      expect(converter.code("`Code!`")).toEqual('[TT]Code![/TT]');
     });
 
     it("converters markdown code ``` to a BBCode tag", function() {
@@ -165,7 +165,7 @@ describe("Markdown", function() {
 
   describe("#process", function() {
     it("respect code blocks - 1", function() {
-      expect(converter.process("`*A*`")).toEqual("[CODE]\n*A*\n[/CODE]");
+      expect(converter.process("`*A*`")).not.toEqual("[CODE]\n*A*\n[/CODE]");
     });
 
     it("respect code blocks - 2", function() {
@@ -180,14 +180,8 @@ describe("Markdown", function() {
       expect(converter.process("    *A*")).toEqual("[CODE]\n*A*\n[/CODE]");
     });
 
-    it("should be able to convert it", function() {
-      var markdown = $("#markdown").html();
-      var bbcode = $("#bbcode").html();
-      expect(converter.process(markdown)).toEqual(bbcode);
-    });
-
     it("should render url as normal", function() {
-      expect(converter.process("[A](B)\n`Code`")).toEqual('[URL="B"]A[/URL]\n[CODE]\nCode\n[/CODE]');
+      expect(converter.process("[A](B)\n`Code`")).toEqual('[URL="B"]A[/URL]\n[TT]Code[/TT]');
     });
   });
 });
