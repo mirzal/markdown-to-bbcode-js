@@ -97,7 +97,7 @@ var Markdown = function() {
     @return String The raw document. Each line is in BBCode.
   */
   self.underscore = function(content) {
-    return _.reduce(["__([^__]+)__", "(?!.*\_{2})\_([^\_\n]+)\_(?!\_)"], function(content, regexp) {
+    return _.reduce(["__([^_]+)__", "\\b\_([^\_\n]+?)\_(?!\_)"], function(content, regexp) {
       return content.replace(new RegExp(regexp, "gmi"), '[U]$1[/U]');
     },
     content);
