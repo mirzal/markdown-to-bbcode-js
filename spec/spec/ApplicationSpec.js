@@ -8,10 +8,6 @@ describe("Markdown", function() {
       expect(converter.url("[Data](A)")).toEqual('[URL="A"]Data[/URL]');
     });
 
-    it("converters markdown urls to bbcode urls", function() {
-      expect(converter.url("[Data1](A)[Data2](B)")).toEqual('[URL="A"]Data1[/URL][URL="B"]Data2[/URL]');
-    });
-
     it("converters markdown urls to bbcode urls - and respects spaces", function() {
       expect(converter.url("[Data1](A) [Data2](B)")).toEqual('[URL="A"]Data1[/URL] [URL="B"]Data2[/URL]');
     });

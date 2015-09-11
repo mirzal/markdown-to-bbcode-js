@@ -23,7 +23,7 @@ var Markdown = function() {
       ![Example](http://example.com) => ![Example](http://example.com)
   */
   self.url = function(content) {
-    return content.replace(/\[([^\]]+)]\(([^)]+)\)/gm, function(a, b, c, d, e) {
+    return content.replace(/\[([^\]]+)]\(([^ ]+)\)/gm, function(a, b, c, d, e) {
       /* Is this an image ? */
       if (a[0] === "!" || e[0] === "!") {
         return a;
