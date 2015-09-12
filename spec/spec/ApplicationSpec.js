@@ -145,20 +145,6 @@ describe("Markdown", function() {
     });
   });
 
-  describe("#unorderedList", function() {
-    it("should be able to convert a markdown list to a BBCode list", function() {
-      var list = ["- Item 1", "- Item 2"];
-      expect(converter.unorderedList(list, 0).data).toEqual("[LIST]\n[*]Item 1\n[*]Item 2\n[/LIST]");
-    });
-  });
-
-  describe("#unorderedList", function() {
-    it("should be able to convert a markdown ordered list to a BBCode ordered list", function() {
-      var lines = ["1. Item 1", "2. Item 2"];
-      expect(converter.orderedList(lines, 0).data).toEqual("[LIST=1]\n[*]Item 1\n[*]Item 2\n[/LIST]");
-    });
-  });
-
   describe("#process", function() {
     it("respect code blocks - 1", function() {
       expect(converter.process("`*A*`")).not.toEqual("[CODE]\n*A*\n[/CODE]");

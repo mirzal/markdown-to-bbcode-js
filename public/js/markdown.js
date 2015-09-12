@@ -189,7 +189,7 @@ var Markdown = function() {
 
         };
       } else {
-        _.each(["unorderedList", "orderedList", "codeIndent", "quoteBlock"], function(method) {
+        _.each(["codeIndent", "quoteBlock"], function(method) {
           /*
             re = {
               to: 5,
@@ -258,40 +258,6 @@ var Markdown = function() {
       n: n,
       match: /[ ]{4}([^\n]+)/,
       remove: /^\s*/
-    });
-  };
-
-  /*
-    Converts Markdown unordered lists into BBCode lists.
-    @lines Array<String> A list of lines. Each line is in Markdown.
-    @n Integer On what position should we start looking for a markdown list?
-    @return Hash Take a look at the #renderBlock method for more information.
-  */
-  self.unorderedList = function(lines, n) {
-    var template = _.template("[LIST]<% for (var i = 0, length = list.length; i < length; i++){ %>\n[*]<%= list[i] %><% }; %>\n[/LIST]");
-    return self.renderBlock({
-      template: template,
-      lines: lines,
-      n: n,
-      match: /^- ([^\n]+)/,
-      remove: /^\s*- /
-    });
-  };
-
-  /*
-    Converts Markdown ordered lists into BBCode lists.
-    @lines Array<String> A list of lines. Each line is in Markdown.
-    @n Integer On what position should we start looking for a markdown list?
-    @return Hash Take a look at the #renderBlock method for more information.
-  */
-  self.orderedList = function(lines, n) {
-    var template = _.template("[LIST=1]<% for (var i = 0, length = list.length; i < length; i++){ %>\n[*]<%= list[i] %><% }; %>\n[/LIST]");
-    return self.renderBlock({
-      template: template,
-      lines: lines,
-      n: n,
-      match: /^\d+\. ([^\n]+)/,
-      remove: /^\d+\. /
     });
   };
 
